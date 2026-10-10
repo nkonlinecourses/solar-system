@@ -104,17 +104,17 @@ jobs:
         with:
           context: .
           push: false
-          tags: ${{ vars.DOCKERHUB_USER }}/solar-system:${{ gitHub.sha }}
+          tags: ${{ vars.DOCKERHUB_USER }}/solar-system:${{ github.sha }}
          
       - name: Docker Image Testing
         run: |
           docker images
           docker run --name solar-system-app -d \
-            -p 3000:3000 \
-            -e MONGO_URI = $MONGO_URI \
-            -e MONGO_USERNAME = $MONGO_USERNAME \
-            -e MONGO_PASSWORD = $MONGO_PASSWORD \
-            ${{ vars.DOCKERHUB_USER }}/solar-system:${{ gitHub.sha }}
+              -p 3000:3000 \
+              -e MONGO_URI = $MONGO_URI \
+              -e MONGO_USERNAME = $MONGO_USERNAME \
+              -e MONGO_PASSWORD = $MONGO_PASSWORD \
+              ${{ vars.DOCKERHUB_USER }}/solar-system:${{ github.sha }}
 
           export IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IpAddress}}{{end}}' solar-system-app)
           echo $IP
