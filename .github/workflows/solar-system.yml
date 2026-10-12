@@ -152,3 +152,9 @@ jobs:
         uses: azure/setup-kubectl@v4
         with:
           version: 'v1.37.0' # default is latest stable
+
+      - name: Fetch Kubernetes cluster details
+        run: |
+          kubectl version --short
+          echo ----------------------
+          kubectl get nodes 
