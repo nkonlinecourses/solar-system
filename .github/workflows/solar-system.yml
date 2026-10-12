@@ -154,10 +154,10 @@ jobs:
           version: 'v1.37.0' # default is latest stable
     
       - name: Setup Kubeconfig file
-        - uses: azure/k8s-set-context@v5
-          with:
-            method: kubeconfig
-            kubeconfig: ${{ secrets.KUBECONFIG }}
+        uses: azure/k8s-set-context@v5
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
 
       - name: Fetch Kubernetes cluster details
         run: |
